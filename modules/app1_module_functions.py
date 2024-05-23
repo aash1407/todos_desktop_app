@@ -1,10 +1,16 @@
+import os
 FILEPATH = "todos.txt"
 
 
 def get_todos(filepath=FILEPATH):
     """ Read a text file and return the list of
-    to-do items.
+    to-do items. If the file does not exist, create it.
     """
+    # Create the file if it doesn't exist
+    if not os.path.exists(filepath):
+        with open(filepath, 'w') as local_file:
+            open(filepath, 'w').close()
+
     with open(filepath, 'r') as local_file:
         todos_local = local_file.readlines()
     return todos_local
